@@ -83,9 +83,7 @@ class Scratch3EventBlocks {
             args.BROADCAST_OPTION.id, args.BROADCAST_OPTION.name);
         if (broadcastVar) {
             const broadcastOption = broadcastVar.name;
-            util.startHats('event_whenbroadcastreceived', {
-                BROADCAST_OPTION: broadcastOption
-            });
+            this._brodcast(broadcastOption, util);
         }
     }
 
@@ -99,11 +97,7 @@ class Scratch3EventBlocks {
             // Have we run before, starting threads?
             if (!util.stackFrame.startedThreads) {
                 // No - start hats for this broadcast.
-                util.stackFrame.startedThreads = util.startHats(
-                    'event_whenbroadcastreceived', {
-                        BROADCAST_OPTION: broadcastOption
-                    }
-                );
+                util.stackFrame.startedThreads = this._brodcast(broadcastOption, util);
                 if (util.stackFrame.startedThreads.length === 0) {
                     // Nothing was started.
                     return;
@@ -131,6 +125,14 @@ class Scratch3EventBlocks {
                 }
             }
         }
+    }
+
+    _broadcast(broadcastOption, util) { //used by compiler
+        const threads = util.startHats('event_whenbroadcastreceived', {
+            BROADCAST_OPTION: broadcastOption
+        });
+        this.runtime.emit('BROADCAST_SENT', broadcastOption);
+        return threads;
     }
 }
 

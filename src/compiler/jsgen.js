@@ -910,11 +910,11 @@ class JSGenerator {
             break;
 
         case 'event.broadcast':
-            this.source += `startHats("event_whenbroadcastreceived", { BROADCAST_OPTION: ${this.descendInput(node.broadcast).asString()} });\n`;
+            this.source += `runtime.ext_scratch3_event._broadcast(${this.descendInput(node.broadcast).asString()}, {startHats});\n`;
             this.resetVariableInputs();
             break;
         case 'event.broadcastAndWait':
-            this.source += `yield* waitThreads(startHats("event_whenbroadcastreceived", { BROADCAST_OPTION: ${this.descendInput(node.broadcast).asString()} }));\n`;
+            this.source += `yield* waitThreads(runtime.ext_scratch3_event._broadcast(${this.descendInput(node.broadcast).asString()}, {startHats}));\n`;
             this.yielded();
             break;
 
