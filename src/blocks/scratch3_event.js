@@ -127,7 +127,7 @@ class Scratch3EventBlocks {
         }
     }
 
-    _broadcast(broadcastOption, util) { //used by compiler
+    _broadcast (broadcastOption, util) { //used by compiler 
         const threads = util.startHats('event_whenbroadcastreceived', {
             BROADCAST_OPTION: broadcastOption
         });
