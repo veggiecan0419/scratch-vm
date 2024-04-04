@@ -83,7 +83,7 @@ class Scratch3EventBlocks {
             args.BROADCAST_OPTION.id, args.BROADCAST_OPTION.name);
         if (broadcastVar) {
             const broadcastOption = broadcastVar.name;
-            this._brodcast(broadcastOption, util);
+            this._broadcast(broadcastOption, util);
         }
     }
 
@@ -97,7 +97,7 @@ class Scratch3EventBlocks {
             // Have we run before, starting threads?
             if (!util.stackFrame.startedThreads) {
                 // No - start hats for this broadcast.
-                util.stackFrame.startedThreads = this._brodcast(broadcastOption, util);
+                util.stackFrame.startedThreads = this._broadcast(broadcastOption, util);
                 if (util.stackFrame.startedThreads.length === 0) {
                     // Nothing was started.
                     return;
